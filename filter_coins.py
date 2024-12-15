@@ -1,19 +1,21 @@
 import requests
 import pandas as pd
 import time
+import websocket
+import json
 
 # Configuration
-PUMPFUN_URL = 'https://pump.fun/advanced/api/coins'
+PUMPFUN_API_URL = 'https://pumpportal.fun/api/data'
 DEXSCREENER_URL = 'https://api.dexscreener.com/latest/dex/tokens'
 GMGN_URL = 'https://gmgn.ai/api/holders'
 
 API_KEYS = {
-    'gmgn': '<https://gmgn.ai/defi/router/v1/sol/tx/get_swap_route?token_in_address=${inputToken}&token_out_address=${outputToken}&in_amount=${amount}&from_address=${fromAddress}&slippage=${slippage}>'
+    'gmgn': '<your-api-key>'
 }
 
 # Fetch data from Pump.fun
 def get_pumpfun_data():
-    response = requests.get(PUMPFUN_URL)
+    response = requests.get(PUMPFUN_API_URL)
     if response.status_code == 200:
         return response.json()
     else:
